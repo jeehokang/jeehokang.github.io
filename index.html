@@ -303,8 +303,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
       prev = pts[pts.length-1];
     }
     const last = tgt(8);
-    const tail = {x: Math.min(last.x + S*1.4, W - S*0.12), y: prev.y + S*1.12};
-    cubic(prev, {x: prev.x + S*0.5, y: prev.y + S*0.06}, {x: tail.x + S*0.14, y: prev.y + S*0.5}, tail, false, pts);
+    const tail = {x: Math.min(last.x + S*1.9, W - S*0.12), y: prev.y + S*0.95};
+    cubic(prev, {x: prev.x + S*0.75, y: prev.y + S*0.02}, {x: tail.x + S*0.05, y: prev.y + S*0.4}, tail, false, pts);
     samples = pts; cum=[0]; total=0;
     for(let k=1;k<pts.length;k++){ total += Math.hypot(pts[k].x-pts[k-1].x, pts[k].y-pts[k-1].y); cum.push(total); }
     appearAt = firstIdx.map(idx => cum[idx]);
