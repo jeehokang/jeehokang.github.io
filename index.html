@@ -236,12 +236,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
   function layout(){
     W = stage.clientWidth; H = stage.clientHeight;
     const byW = (W - 32) / (0.85*1.12 + 4*1.12 + 1);
-    const byH = (H * 0.66) / 2.24;
-    S = Math.max(44, Math.min(176, byW, byH));
+    const lineEl = document.getElementById('line');
+    const textH = lineEl.offsetHeight || 60;
+    const byH = (H * 0.9 - textH) / 2.66;
+    S = Math.max(36, Math.min(176, byW, byH));
     P = S*1.12; ROWGAP = S*0.24; OFF = P*0.85;
     const blockW = OFF + 4*P + S;
-    X0 = (W - blockW)/2; CY = H*0.44;
-    document.getElementById('line').style.top = (CY + S + ROWGAP/2 + S*0.42) + 'px';
+    const blockH = 2*S + ROWGAP + S*0.42 + textH;
+    const top = Math.max(8, (H - blockH) / 2);
+    X0 = (W - blockW)/2; CY = top + S + ROWGAP/2;
+    lineEl.style.top = (CY + S + ROWGAP/2 + S*0.42) + 'px';
     stage.style.setProperty('--s', S+'px');
     DPR = Math.min(2, window.devicePixelRatio || 1);
     [back,front].forEach(c=>{ c.width = Math.round(W*DPR); c.height = Math.round(H*DPR); });
