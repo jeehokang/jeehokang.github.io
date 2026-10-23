@@ -9,8 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
 <style>
 :root{
+  --gutter-l:max(clamp(24px,4.5vw,72px),env(safe-area-inset-left,0px));
+  --gutter-r:max(clamp(24px,4.5vw,72px),env(safe-area-inset-right,0px));
   --bg:#FFFFFF;
-  --grid:#FBF9F9;
+  --grid:#F9F6F6;
   --ruby:#8B2323;
   --ink-strong:#3A3836;
   --ink-soft:#55514D;
@@ -23,10 +25,12 @@
 html,body{height:100%}
 html,body,.page{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13.0' cy='13.0' r='11.5' fill='%238B2323' stroke='white' stroke-width='1.5'/%3E%3Ccircle cx='13.0' cy='13.0' r='8.28' fill='none' stroke='%23B04545' stroke-width='1.2'/%3E%3Ccircle cx='10.40' cy='10.40' r='1.56' fill='white'/%3E%3Ccircle cx='10.40' cy='15.60' r='1.56' fill='white'/%3E%3Ccircle cx='15.60' cy='10.40' r='1.56' fill='white'/%3E%3Ccircle cx='15.60' cy='15.60' r='1.56' fill='white'/%3E%3C/svg%3E") 13 13,auto}
 a,button,.face{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ccircle cx='17.0' cy='17.0' r='15.5' fill='%238B2323' stroke='white' stroke-width='1.5'/%3E%3Ccircle cx='17.0' cy='17.0' r='11.16' fill='none' stroke='%23B04545' stroke-width='1.2'/%3E%3Ccircle cx='13.60' cy='13.60' r='2.04' fill='white'/%3E%3Ccircle cx='13.60' cy='20.40' r='2.04' fill='white'/%3E%3Ccircle cx='20.40' cy='13.60' r='2.04' fill='white'/%3E%3Ccircle cx='20.40' cy='20.40' r='2.04' fill='white'/%3E%3C/svg%3E") 17 17,pointer}
-body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14px;-webkit-font-smoothing:antialiased}
-.page{min-height:100%;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.topbar{position:sticky;top:0;z-index:20;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:24px;max-width:1360px;width:100%;margin:0 auto}
+html{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;background-position:calc(50% + 20px) -20px}
+body{margin:0;background:transparent;color:var(--fg);font-family:var(--font);font-size:14px;-webkit-font-smoothing:antialiased}
+.page{min-height:100%;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.topbar{position:sticky;top:0;z-index:20;margin-inline:calc(-1 * var(--gutter-l));padding-inline:var(--gutter-l);background:transparent;transition:background-color 300ms ease,-webkit-backdrop-filter 300ms ease,backdrop-filter 300ms ease}
+.topbar.scrolled{background:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:24px;max-width:1360px;width:100%;margin:0 auto;font-size:17px}
 header a{color:var(--fg);text-decoration:none}
 header a:hover{color:var(--muted)}
 .name{font-weight:500}
@@ -36,7 +40,7 @@ nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 8px}
 @media (prefers-reduced-motion:reduce){.stitch{transition:opacity 150ms ease}}
 a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:4px}
 
-.stage{position:relative;flex:1 1 auto;min-height:360px;overflow:hidden;--s:150px;margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)))}
+.stage{position:relative;flex:1 1 auto;min-height:360px;overflow:hidden;--s:150px;margin-left:calc(-1 * var(--gutter-l));margin-right:calc(-1 * var(--gutter-r))}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #back{z-index:1}#front{z-index:3}
 .btn{position:absolute;left:0;top:0;width:var(--s);height:var(--s);z-index:2;opacity:0;will-change:transform}
@@ -63,11 +67,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
 .hero .stage{flex:1 1 auto}
 
 .work{max-width:1360px;margin:0 auto;padding-block:24px 160px}
-.work-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:18px;border-bottom:1px solid #E6E3E1;font-size:14px}
+.work-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:18px;border-bottom:1px solid #ECE2E2;font-size:14px}
 .work-head h2{margin:0;font-size:14px;font-weight:500}
 .work-head span{color:var(--muted);font-variant-numeric:tabular-nums}
 .list{display:flex;flex-direction:column}
-.proj{display:grid;gap:20px 40px;padding-block:56px;border-bottom:1px solid #EEEBE9}
+.proj{display:grid;gap:20px 40px;padding-block:56px;border-bottom:1px solid #F2EBEB}
 .cover{display:block;overflow:hidden;border-radius:6px;background:#F3F1F0;aspect-ratio:16/9;max-width:100%}
 .cover img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 600ms cubic-bezier(.22,1,.36,1)}
 .cover:hover img{transform:scale(1.025)}
@@ -90,7 +94,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
 .work[data-layout="b"] .side,.work[data-layout="b"] .yr{display:none}
 .work[data-layout="b"] .cover{order:2}
 
-.foot{max-width:1360px;margin:0 auto;padding-block:72px 48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
+.foot{max-width:1360px;margin:0 auto;padding-block:200px 56px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
 .foot p{margin:0}
 .foot .big{font-size:clamp(28px,3vw,40px);font-weight:500;letter-spacing:-0.02em}
 .foot .links{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:15px}
@@ -98,7 +102,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
 .foot .links a:hover{color:var(--ruby)}
 .foot .mail{user-select:all}
 
-.switch{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px #E6E3E1,0 8px 24px rgba(0,0,0,.08);font-size:13px}
+.switch{position:fixed;right:var(--gutter-r);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px #E6E3E1,0 8px 24px rgba(0,0,0,.08);font-size:13px}
 .switch span{padding:0 8px 0 10px;color:var(--muted)}
 .switch button{font:inherit;min-height:36px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--fg)}
 .switch button[aria-pressed="true"]{background:var(--fg);color:#fff}
@@ -109,6 +113,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
   .work[data-layout="a"] .yr{display:none}
   .work[data-layout="b"] .cover{order:0}
 }
+.all{display:inline-flex;align-items:center;min-height:44px;margin-top:32px;font-size:15px;color:var(--fg);text-underline-offset:4px}
+.all:hover{color:var(--ruby)}
+.work-page{padding-block:56px 160px}
+.work-page h1{margin:0;font-size:clamp(32px,4vw,56px);font-weight:500;letter-spacing:-0.03em}
+.work-page .work-head{margin-top:40px}
+@view-transition{navigation:auto}
+.topbar{view-transition-name:topbar}
+::view-transition-old(root){animation:vt-out 260ms ease both}
+::view-transition-new(root){animation:vt-in 480ms ease both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
 </style>
 </head>
 <body>
@@ -118,7 +134,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
   <div class="topbar">
   <header>
     <a class="name" href="#top">Jeeho Kang</a>
-    <nav aria-label="Main" id="nav"><a href="#work">Work</a><a href="#top">About</a><span class="stitch" id="stitch" aria-hidden="true"></span></nav>
+    <nav aria-label="Main" id="nav"><a href="work.html">Work</a><a href="#top">About</a><span class="stitch" id="stitch" aria-hidden="true"></span></nav>
   </header>
   </div>
 
@@ -136,7 +152,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
   </section>
 
   <section class="work" id="work" data-layout="b" aria-labelledby="work-h">
-    <div class="work-head"><h2 id="work-h">Selected Work</h2><span>(03)</span></div>
+    <div class="work-head"><h2 id="work-h">Selected Work</h2><span>(3)</span></div>
     <div class="list">
       <article class="proj">
         <a class="cover" href="#work" aria-label="BoConcept"><img src="assets/covers/boconcept.webp" alt="BoConcept website redesign shown on a laptop" loading="lazy"></a>
@@ -150,14 +166,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
         <span class="yr">2026</span>
       </article>
       <article class="proj">
-        <a class="cover" href="#work" aria-label="MOMO"><img src="assets/covers/momo.webp" alt="MOMO app screens with its soft purple character" loading="lazy"></a>
+        <a class="cover" href="momo.html" aria-label="MOMO"><img src="assets/thumbs/momo.webp" alt="Hands holding a phone showing the MOMO app" loading="lazy"></a>
         <div class="meta">
           <p class="cat">Mobile App · UX/UI</p>
-          <h3 class="title"><a href="#work">MOMO</a></h3>
-          <p class="desc">An emotion-journaling app that links daily feelings to counseling, so it's easier to see how you've changed.</p>
-          <a class="more" href="#work">View project</a>
+          <h3 class="title"><a href="momo.html">MOMO</a></h3>
+          <p class="desc">An emotion-journaling app that connects your feelings with the flow of your therapy sessions, so it's easier to understand how you change.</p>
+          <a class="more" href="momo.html">View project</a>
         </div>
-        <div class="side"><p class="desc">An emotion-journaling app that links daily feelings to counseling, so it's easier to see how you've changed.</p><a class="more" href="#work">View project</a></div>
+        <div class="side"><p class="desc">An emotion-journaling app that connects your feelings with the flow of your therapy sessions, so it's easier to understand how you change.</p><a class="more" href="momo.html">View project</a></div>
         <span class="yr">2026</span>
       </article>
       <article class="proj">
@@ -172,6 +188,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
         <span class="yr">2026</span>
       </article>
     </div>
+    <a class="all" href="work.html">View all work</a>
   </section>
 
   <footer class="foot">
@@ -391,20 +408,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
     nav.addEventListener('mouseleave', () => moveTo(current()));
     nav.addEventListener('focusout', e => { if (!nav.contains(e.relatedTarget)) moveTo(current()); });
     const first = links[0]; st.style.transform = 'translateX(' + (first.offsetLeft + first.clientWidth/2 - 9) + 'px)';
-    const workSec = document.getElementById('work'), workLink = links[0];
-    if (workSec && 'IntersectionObserver' in window){
-      new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) workLink.setAttribute('aria-current','page'); else workLink.removeAttribute('aria-current');
-        if (!nav.matches(':hover')) moveTo(current());
-      }, { rootMargin: '-45% 0px -45% 0px' }).observe(workSec);
-    }
-    document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {
-      workSec.dataset.layout = b.dataset.l;
-      document.querySelectorAll('.switch button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    }));
     moveTo(current());
     addEventListener('resize', () => moveTo(current()));
   })();
+
+  const topbar = document.querySelector('.topbar');
+  const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 8);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   function whenVisible(fn){
     if (!document.hidden) return fn();
