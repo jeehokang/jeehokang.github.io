@@ -68,7 +68,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
 
 .work{max-width:1360px;margin:0 auto;padding-block:24px 160px}
 .work-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:18px;border-bottom:1px solid #ECE2E2;font-size:14px}
-.work-head h2{margin:0;font-size:14px;font-weight:500}
+.work-head h2{margin:0;font-size:17px;font-weight:500}
 .work-head span{color:var(--muted);font-variant-numeric:tabular-nums}
 .list{display:flex;flex-direction:column}
 .proj{display:grid;gap:20px 40px;padding-block:56px;border-bottom:1px solid #F2EBEB}
@@ -125,6 +125,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
 @keyframes vt-out{to{opacity:0}}
 @keyframes vt-in{from{opacity:0}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+.dots{display:flex;align-items:center;gap:0;margin-right:-3px}
+.dot{display:grid;place-items:center;width:22px;height:26px;color:#D6CFCF;transition:color 200ms ease,transform 200ms ease}
+.dot svg{width:18px;height:18px;fill:currentColor}
+.dot:hover,.dot:focus-visible{color:var(--ruby);transform:scale(1.12)}
+.dot[aria-current="true"]{color:var(--ruby)}
+.proj{scroll-margin-top:110px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dot{transition:none}}
 </style>
 </head>
 <body>
@@ -152,20 +160,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
   </section>
 
   <section class="work" id="work" data-layout="b" aria-labelledby="work-h">
-    <div class="work-head"><h2 id="work-h">Selected Work</h2><span>(3)</span></div>
+    <div class="work-head"><h2 id="work-h">Selected Work</h2><nav class="dots" aria-label="Jump to a project"><a class="dot" href="#p-boconcept" aria-label="Jump to BoConcept"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9.25"/><circle cx="10" cy="10" r="6.4" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1"/><circle cx="8" cy="8" r="1.15" fill="#fff"/><circle cx="12" cy="8" r="1.15" fill="#fff"/><circle cx="8" cy="12" r="1.15" fill="#fff"/><circle cx="12" cy="12" r="1.15" fill="#fff"/></svg></a><a class="dot" href="#p-momo" aria-label="Jump to MOMO"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9.25"/><circle cx="10" cy="10" r="6.4" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1"/><circle cx="8" cy="8" r="1.15" fill="#fff"/><circle cx="12" cy="8" r="1.15" fill="#fff"/><circle cx="8" cy="12" r="1.15" fill="#fff"/><circle cx="12" cy="12" r="1.15" fill="#fff"/></svg></a><a class="dot" href="#p-tlocker" aria-label="Jump to T-Locker"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9.25"/><circle cx="10" cy="10" r="6.4" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1"/><circle cx="8" cy="8" r="1.15" fill="#fff"/><circle cx="12" cy="8" r="1.15" fill="#fff"/><circle cx="8" cy="12" r="1.15" fill="#fff"/><circle cx="12" cy="12" r="1.15" fill="#fff"/></svg></a></nav></div>
     <div class="list">
-      <article class="proj">
-        <a class="cover" href="#work" aria-label="BoConcept"><img src="assets/covers/boconcept.webp" alt="BoConcept website redesign shown on a laptop" loading="lazy"></a>
+      <article class="proj" id="p-boconcept">
+        <a class="cover" href="boconcept.html" aria-label="BoConcept"><img src="assets/thumbs/boconcept.webp" alt="BoConcept website redesign shown on a laptop on a yellow sofa" loading="lazy"></a>
         <div class="meta">
           <p class="cat">Website Redesign · UX/UI</p>
-          <h3 class="title"><a href="#work">BoConcept</a></h3>
-          <p class="desc">Redesigning a Danish furniture brand's website to make customizing and buying a sofa feel simpler.</p>
-          <a class="more" href="#work">View project</a>
+          <h3 class="title"><a href="boconcept.html">BoConcept</a></h3>
+          <p class="desc">A redesign of the BoConcept website that improves usability, the customization process, and the overall shopping flow.</p>
+          <a class="more" href="boconcept.html">View project</a>
         </div>
-        <div class="side"><p class="desc">Redesigning a Danish furniture brand's website to make customizing and buying a sofa feel simpler.</p><a class="more" href="#work">View project</a></div>
+        <div class="side"><p class="desc">A redesign of the BoConcept website that improves usability, the customization process, and the overall shopping flow.</p><a class="more" href="boconcept.html">View project</a></div>
         <span class="yr">2026</span>
       </article>
-      <article class="proj">
+      <article class="proj" id="p-momo">
         <a class="cover" href="momo.html" aria-label="MOMO"><img src="assets/thumbs/momo.webp" alt="Hands holding a phone showing the MOMO app" loading="lazy"></a>
         <div class="meta">
           <p class="cat">Mobile App · UX/UI</p>
@@ -176,15 +184,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
         <div class="side"><p class="desc">An emotion-journaling app that connects your feelings with the flow of your therapy sessions, so it's easier to understand how you change.</p><a class="more" href="momo.html">View project</a></div>
         <span class="yr">2026</span>
       </article>
-      <article class="proj">
-        <a class="cover" href="#work" aria-label="T-Locker"><img src="assets/covers/tlocker.webp" alt="T-Locker app screens over a station map" loading="lazy"></a>
+      <article class="proj" id="p-tlocker">
+        <a class="cover" href="tlocker.html" aria-label="T-Locker"><img src="assets/thumbs/tlocker.webp" alt="T-Locker app screens over a station map" loading="lazy"></a>
         <div class="meta">
           <p class="cat">Mobile App Redesign · UX/UI</p>
-          <h3 class="title"><a href="#work">T-Locker</a></h3>
-          <p class="desc">Turning a confusing subway-locker booking flow into a fast, clear one.</p>
-          <a class="more" href="#work">View project</a>
+          <h3 class="title"><a href="tlocker.html">T-Locker</a></h3>
+          <p class="desc">A redesign of the T-Locker app that improves its information architecture and storage flow, creating a faster, more intuitive user experience.</p>
+          <a class="more" href="tlocker.html">View project</a>
         </div>
-        <div class="side"><p class="desc">Turning a confusing subway-locker booking flow into a fast, clear one.</p><a class="more" href="#work">View project</a></div>
+        <div class="side"><p class="desc">A redesign of the T-Locker app that improves its information architecture and storage flow, creating a faster, more intuitive user experience.</p><a class="more" href="tlocker.html">View project</a></div>
         <span class="yr">2026</span>
       </article>
     </div>
@@ -359,13 +367,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
     bctx.stroke(); fctx.stroke();
   }
 
-  let t = 0, last = 0;
+  let t = 0, last = 0, shown = false;
   const hit = BTN.map(()=>-1);
   function render(){
     const D = reduce ? total : total * sewEase((t - START_DELAY)/SEW_DUR);
     draw(D);
     stitches.forEach(s => { stitchEls[s.btn][s.k].style.opacity = (D >= s.end) ? 1 : 0; });
-    const fade = reduce ? 1 : ease(Math.min(1, t/0.45));
+    const fade = (reduce || shown) ? 1 : ease(Math.min(1, t/0.45));
+    if (fade >= 1) shown = true;
     els.forEach((el,i)=>{
       const p = tgt(i);
       if (hit[i] < 0 && D >= appearAt[i]) hit[i] = t;
@@ -380,7 +389,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
     if (t < START_DELAY + SEW_DUR + TUG_DUR + 0.2){ t += dt; render(); }
     requestAnimationFrame(frame);
   }
-  function replay(){ t = 0; hit.fill(-1); render(); }
+  function replay(){ shown = true; t = START_DELAY; hit.fill(-1); render(); }
   document.getElementById('replay').addEventListener('click', replay);
 
   try { new ResizeObserver(()=>{ layout(); render(); }).observe(stage); }
@@ -415,6 +424,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
   const topbar = document.querySelector('.topbar');
   const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 8);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  const dotLinks = Array.from(document.querySelectorAll('.dot'));
+  const projs = dotLinks.map(d => document.querySelector(d.getAttribute('href')));
+  let lockUntil = 0, ticking = false;
+  const setActive = i => dotLinks.forEach((x, k) => x.setAttribute('aria-current', k === i ? 'true' : 'false'));
+  dotLinks.forEach((d, i) => d.addEventListener('click', () => { setActive(i); lockUntil = performance.now() + 1200; }));
+  function spy(){
+    ticking = false;
+    if (performance.now() < lockUntil) return;
+    const mid = window.innerHeight * 0.5;
+    let idx = -1;
+    projs.forEach((p, i) => { if (p && p.getBoundingClientRect().top <= mid) idx = i; });
+    setActive(idx);
+  }
+  addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+  addEventListener('scrollend', () => { lockUntil = 0; spy(); });
+  spy();
 
   function whenVisible(fn){
     if (!document.hidden) return fn();

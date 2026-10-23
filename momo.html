@@ -155,6 +155,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
 .slides{animation-delay:200ms}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}}
 @media (prefers-reduced-motion:reduce){.case-head h1,.case-head p,.slides{animation:none}}
+.pager{max-width:1360px;margin:0 auto;padding-block:20px 0;display:flex;justify-content:space-between;gap:24px;border-top:1px solid #ECE2E2;margin-top:72px}
+.pager a{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:17px;font-weight:500;color:#A8A29C;text-decoration:none;transition:color 200ms ease}
+.pager a:hover,.pager a:focus-visible{color:var(--ruby)}
+.pager svg{width:11px;height:12px;fill:currentColor;flex:none}
 </style>
 </head>
 <body>
@@ -189,6 +193,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:
       <img src="assets/momo/momo-15.webp" width="2880" height="1620" alt="" loading="lazy">
     </div>
   </main>
+
+  <nav class="pager" aria-label="More projects">
+    <a href="boconcept.html" aria-label="Previous project: BoConcept"><svg viewBox="0 0 11 12" aria-hidden="true"><path d="M0 6 L11 0 L11 12 Z"/></svg>Previous</a>
+    <a href="tlocker.html" aria-label="Next project: T-Locker">Next<svg viewBox="0 0 11 12" aria-hidden="true"><path d="M11 6 L0 0 L0 12 Z"/></svg></a>
+  </nav>
 
   <footer class="foot">
     <p class="big">Let's link up.</p>
